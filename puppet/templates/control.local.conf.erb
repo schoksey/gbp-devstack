@@ -31,10 +31,12 @@ SERVICE_HOST_NAME=$HOST_NAME
 NEUTRON_CREATE_INITIAL_NETWORKS=False
 Q_ML2_TENANT_NETWORK_TYPE=vxlan
 
-ODL_MODE=externalodl
+# Default is allinone where the controller runs within the devstack-control node
+#ODL_MODE=externalodl
 
 ODL_MGR_IP=<%= @hosts['opendaylight']['ipaddress'] %>
-ODL_PORT=8080
+ODL_PORT=8181
+ODL_BOOT_WAIT=600
 
 ENABLE_TENANT_TUNNELS=True
 

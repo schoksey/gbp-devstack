@@ -27,6 +27,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.hostname = "devstack-control"
     control.vm.network "private_network", ip: "#{control_ip}"
     control.vm.network "private_network", ip: "#{neutron_ex_ip}", virtualbox__intnet: "mylocalnet" 
+    control.vm.network "forwarded_port", guest: 80, host: 8282
+    control.vm.network "forwarded_port", guest: 8181, host: 8383
     control.vm.provider :virtualbox do |vb|
       vb.memory = 4096
     end
