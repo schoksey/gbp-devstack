@@ -40,21 +40,33 @@ To make devstack-scripts visible::
 
     source /etc/environment
 
-    sudo ovs-vsctl add-br br-int
-
-    ^ one time only.
-
    
-This assumes that ODL is 192.168.50.1. If you need to change this, edit /etc/environment,
-change the 'export ODL=' to the right IP address, save, exit, and repeat source command above.
+This assumes that ODL is configured to run within the devstack-control node (192.168.50.20) itself. If you need to change this, edit /etc/environment, change the 'export ODL=' to the right IP address, save, exit, and repeat source command above.
  
 After stacking for the first time, edit local.conf and:
 	
 uncomment: 'OFFLINE=True'
-
 comment out: 'RECLONE=yes'
 
+The odl-server takes a while to start at times, if you encounter a timeout waiting on the server to respond, increase the ODL_BOOT_WAIT time in local.conf.  At this time, 600 seconds seems to work on the default min and max heap size for the java executable.
+
+ODL server test::
+
+	curl -u admin:admin http://192.168.50.20:8181/restconf/operational/network-topology:network-topology/topology/netvirt:1 | python -m json.tool
+	
+	% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+	100    42    0    42    0     0   5595      0 --:--:-- --:--:-- --:--:--  7000
+	{
+    	"topology": [
+        	{
+            	"topology-id": "netvirt:1"
+        	}
+    	]
+	}
+
 To stack safely, from $HOME/devstack directory on all the nodes execute::
+Note: running restack.sh will ensure br-int is created before the rest of the stack run.
 
     restack.sh
 
