@@ -43,13 +43,11 @@ To make devstack-scripts visible::
    
 This assumes that ODL is configured to run within the devstack-control node (192.168.50.20) itself. If you need to change this, edit /etc/environment, change the 'export ODL=' to the right IP address, save, exit, and repeat source command above.
  
-After stacking for the first time, edit local.conf and:
-	
-uncomment: 'OFFLINE=True'
-comment out: 'RECLONE=yes'
+After stacking for the first time, edit local.conf and::
+	uncomment: 'OFFLINE=True'
+	comment out: 'RECLONE=yes'
 
 	restack.sh
-
    
 Note: NOT ./restack.sh ... just restack.sh ... its in the PATH.
  
