@@ -48,6 +48,11 @@ After stacking for the first time, edit local.conf and:
 uncomment: 'OFFLINE=True'
 comment out: 'RECLONE=yes'
 
+	restack.sh
+
+   
+Note: NOT ./restack.sh ... just restack.sh ... its in the PATH.
+ 
 The odl-server takes a while to start at times, if you encounter a timeout waiting on the server to respond, increase the ODL_BOOT_WAIT time in local.conf.  At this time, 600 seconds seems to work on the default min and max heap size for the java executable.
 
 ODL server test::
@@ -67,12 +72,6 @@ ODL server test::
 
 To stack safely, from $HOME/devstack directory on all the nodes execute::
 Note: running restack.sh will ensure br-int is created before the rest of the stack run.
-
-    restack.sh
-
-   
-Note: NOT ./restack.sh ... just restack.sh ... its in the PATH.
- 
 To verify from control node if all the nodes are stacked successfully::
 
     source openrc admin admin
