@@ -30,10 +30,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     control.vm.network "forwarded_port", guest: 80, host: 8282
     control.vm.network "forwarded_port", guest: 8181, host: 8383
     control.vm.provider :virtualbox do |vb|
-      vb.memory = 4096
+      vb.memory = 5120
     end
     control.vm.provider "vmware_fusion" do |vf|
-      vf.vmx["memsize"] = "4096"
+      vf.vmx["memsize"] = "5120"
     end
     control.vm.provision "puppet" do |puppet|
       puppet.hiera_config_path = "puppet/hiera.yaml"
