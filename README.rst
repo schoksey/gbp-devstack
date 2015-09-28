@@ -40,16 +40,19 @@ To make devstack-scripts visible::
 
     source /etc/environment
 
+    restack.sh
+
+Note: NOT ./restack.sh ... just restack.sh ... its in the PATH.
    
 This assumes that ODL is configured to run within the devstack-control node (192.168.50.20) itself. If you need to change this, edit /etc/environment, change the 'export ODL=' to the right IP address, save, exit, and repeat source command above.
  
 After stacking for the first time, edit local.conf and::
+
 	uncomment: 'OFFLINE=True'
 	comment out: 'RECLONE=yes'
 
 	restack.sh
    
-Note: NOT ./restack.sh ... just restack.sh ... its in the PATH.
  
 The odl-server takes a while to start at times, if you encounter a timeout waiting on the server to respond, increase the ODL_BOOT_WAIT time in local.conf.  At this time, 600 seconds seems to work on the default min and max heap size for the java executable.
 
@@ -77,8 +80,12 @@ To verify from control node if all the nodes are stacked successfully::
     nova hypervisor-list
 
 
+In order drop into the karaf shell::
+
+    sshpass -p karaf ssh -p 8101 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no karaf@localhost
+
 Testing
------
+-------
 
 1) Check the ovs bridges first::
 
