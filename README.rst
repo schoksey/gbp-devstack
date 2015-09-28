@@ -80,10 +80,6 @@ To verify from control node if all the nodes are stacked successfully::
     nova hypervisor-list
 
 
-In order drop into the karaf shell::
-
-    sshpass -p karaf ssh -p 8101 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no karaf@localhost
-
 Testing
 -------
 
